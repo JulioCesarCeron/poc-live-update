@@ -1,8 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 
-const PORT = 3200;
-
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -27,11 +25,12 @@ app.get('/version', function(req, res) {
     description: 'API test',
     version: '0.0.0',
   };
-
+  
   return res.json(response);
 });
 
-app.listen(PORT, function() {
+const PORT = 3200;
+app.listen(PORT, () => {
   console.log(`poc it's a live on port ${PORT}!!`);
 })
 
