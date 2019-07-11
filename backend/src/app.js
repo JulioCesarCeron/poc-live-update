@@ -22,8 +22,9 @@ app.get('/', function(req, res) {
 app.get('/test', function(req, res) {
   const response = {
     id: 1,
-    description: 'API test',
     date: Date.now(),
+    description: 'API test',
+    verion: '0.0.0',
   };
 
   return res.json(response);
