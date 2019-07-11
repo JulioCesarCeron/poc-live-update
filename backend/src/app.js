@@ -5,7 +5,6 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-
 app.use((req, res, next) => {
   req.io = io;
   return next();
@@ -29,7 +28,7 @@ app.get('/version', function(req, res) {
   return res.json(response);
 });
 
-const PORT = 3200;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`poc it's a live on port ${PORT}!!`);
 })

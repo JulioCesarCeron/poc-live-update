@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "./Version.css"
 import api from "./services/api"
-import socket from 'socket.io-client'
+import socket from 'socket.io-client';
 
 class Version extends Component {
   state = {
@@ -9,7 +9,7 @@ class Version extends Component {
   }
 
   subscribeToEvents = () => {
-    const io = socket('http://localhost:3200');
+    const io = socket('http://localhost:3000');
     io.on('newVersion', (data) => {
       console.log("newVersion", data);
     })
