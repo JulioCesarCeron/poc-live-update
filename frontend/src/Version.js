@@ -1,17 +1,17 @@
 import React, { Component } from "react"
 import "./Version.css"
 import api from "./services/api"
-import socket from 'socket.io-client';
+import socketIOClient from "socket.io-client";
 
 class Version extends Component {
   state = {
     backendVersion: "",
   }
 
-  subscribeToEvents = () => {
-    const io = socket('http://localhost:3000');
-    io.on('newVersion', (data) => {
-      console.log("newVersion", data);
+  subscribeToEvents() {
+    const socket = socketIOClient("localhost:3200");
+    socket.on("news", data => {
+      console.log('data', data);
     })
   }
 
