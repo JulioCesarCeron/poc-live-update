@@ -11,7 +11,6 @@ const io = socketIO(server);
 
 io.on('connection', socket => {
   console.log(`Socket conectado ${socket.id}`);
-  socket.emit('news', { hello: 'world' });
   
   socket.on('my other event', function (data) {
     console.log(data);
@@ -21,6 +20,11 @@ io.on('connection', socket => {
     console.log("user disconnected");
   })
 });
+
+app.use((req, res, next) => {
+  req.io = io;
+  return next();
+})
 
 app.use(cors());
 app.use(express.json());
