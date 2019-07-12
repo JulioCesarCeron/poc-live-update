@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const http = require('http');
 const socketIO = require('socket.io');
 
@@ -7,6 +8,13 @@ const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
+
+const user = 'jorge';
+const password = 'jorge';
+
+mongoose.connect(`mongodb+srv://${user}:${password}@cluster0-ii4eh.mongodb.net/poc-live-update?retryWrites=true&w=majority`, {
+  useNewUrlParser: true,
+});
 
 
 io.on('connection', socket => {
