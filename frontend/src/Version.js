@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import "./Version.css"
 import api from "./services/api"
 import socketIOClient from "socket.io-client";
+import {VERSION} from './config/config'
 
 class Version extends Component {
   state = {
@@ -12,6 +13,7 @@ class Version extends Component {
     const socket = socketIOClient("localhost:3200");
     socket.on("news", data => {
       console.log('data', data);
+      data.version !== VERSION && alert('please, refresh this page');
     })
   }
 
@@ -32,9 +34,9 @@ class Version extends Component {
     return (
       <div className="container">
         <h1>poc live-update</h1>
-        <span>front version: 0.0.0</span>
+        <span>version from build(frontend): 0.0.0</span>
         <br />
-        <span>back version: {backendVersion}</span>
+        <span>version from DB: {backendVersion}</span>
         <br />
         <button className="button-version" onClick={() => this.getData()}>
           get backend version
