@@ -8,6 +8,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/version', VersionController.index);
-routes.post('/version', VersionController.store)
+routes.post('/sendNotification', VersionController.sendNotification);
+routes.post('/updateVersion', VersionController.updateVersion);
 
 module.exports = routes
