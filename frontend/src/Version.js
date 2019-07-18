@@ -11,19 +11,28 @@ toast.configure({
   draggable: false,
 });
 
+
 class Version extends Component {
   state = {
     backendVersion: "",
   }
 
-	notify = () => toast.info('🦄 your frontend version is outdated, please refresh your page!', {
+	Msg = () => (
+		<div>
+			 your frontend version is outdated, please refresh your page!'
+			<button onClick={() => window.location.reload()} className={`button-refresh button-version`}>Refresh</button>
+		</div>
+	)
+
+
+	notify = () => toast(this.Msg(), {
 		position: "bottom-left",
 		autoClose: 5000,
 		hideProgressBar: false,
 		closeOnClick: true,
 		pauseOnHover: true,
 		draggable: true,
-		});
+	});
 
   subscribeToEvents() {
     const socket = socketIOClient("localhost:3200")

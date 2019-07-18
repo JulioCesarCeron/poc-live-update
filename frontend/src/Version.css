@@ -15,3 +15,8 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+.button-refresh {
+	background: #eae6fd;
+	border: none;
+}
