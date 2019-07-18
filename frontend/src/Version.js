@@ -3,17 +3,33 @@ import "./Version.css";
 import api from "./services/api";
 import socketIOClient from "socket.io-client";
 import { VERSION } from "./config/config";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure({
+  autoClose: 8000,
+  draggable: false,
+});
 
 class Version extends Component {
   state = {
     backendVersion: "",
   }
 
+	notify = () => toast.info('🦄 your frontend version is outdated, please refresh your page!', {
+		position: "bottom-left",
+		autoClose: 5000,
+		hideProgressBar: false,
+		closeOnClick: true,
+		pauseOnHover: true,
+		draggable: true,
+		});
+
   subscribeToEvents() {
     const socket = socketIOClient("localhost:3200")
     socket.on("news", data => {
       console.log("data", data)
-      data.version !== VERSION && alert("please, refresh this page")
+      data.version !== VERSION && this.notify();
     })
   }
 
@@ -40,7 +56,7 @@ class Version extends Component {
         <br />
         <button className="button-version" onClick={() => this.getData()}>
           get backend version
-        </button>
+				</button>
       </div>
     )
   }
