@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import "./Version.css"
-import api from "./services/api"
+import React, { Component } from "react";
+import "./Version.css";
+import api from "./services/api";
 import socketIOClient from "socket.io-client";
-import {VERSION} from './config/config'
+import { VERSION } from "./config/config";
 
 class Version extends Component {
   state = {
@@ -10,10 +10,10 @@ class Version extends Component {
   }
 
   subscribeToEvents() {
-    const socket = socketIOClient("localhost:3200");
+    const socket = socketIOClient("localhost:3200")
     socket.on("news", data => {
-      console.log('data', data);
-      data.version !== VERSION && alert('please, refresh this page');
+      console.log("data", data)
+      data.version !== VERSION && alert("please, refresh this page")
     })
   }
 
@@ -34,7 +34,7 @@ class Version extends Component {
     return (
       <div className="container">
         <h1>poc live-update</h1>
-        <span>version from build(frontend): 0.0.0</span>
+        <span>version from build(frontend): {VERSION}</span>
         <br />
         <span>version from DB: {backendVersion}</span>
         <br />
